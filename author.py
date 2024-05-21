@@ -34,6 +34,39 @@ def generator(dim):
     print(hypervector)
     return hypervector
 
+def bundle(vector_a, vector_b):
+    vector_c = generator(10000)
+    vector_o = []
+    i=0
+    while i < len(vector_a) and i < len(vector_b):
+        if vector_a[i] == vector_b[i]:
+            vector_o.append(vector_a[i])
+            i+=1
+        else:
+            vector_o.append(vector_c[i])
+            i+=1
+    output = np.array(vector_o)
+    print(countOf(output, 1))
+    print(output)
+    return output
+
+def bind(vector_a, vector_b):
+    vector_o = []
+    i=0
+    j=0
+    while i < len(vector_a) and i < len(vector_b):
+        j = vector_a[i] * vector_b[i]
+        vector_o.append(j)
+        i+=1
+    output = np.array(vector_o)
+    print(output)
+    return output
+
+def permute(vector):
+    output = random.shuffle(vector)
+    print(output)
+    return output
+
 #Assign atomic hypervectors to each character of
 #the latin alphabet using the generator function
 alphabet = {"a": generator(10000),
@@ -64,25 +97,11 @@ alphabet = {"a": generator(10000),
             "y": generator(10000),
             "z": generator(10000)}
 
-#Word Encoder
-#Takes all the atomic hypervectors for each letter encountered until a space
-#and builds a hypervector representative of their sequence.
-def word_encoder(text):
-    i = 0
-    word = []
-    bundled_word = []
-    for i in text:
-        if i != " ":
-            word.append(alphabet[i])
-        else:
-            
-
 def main():
     inp = input()
     x = generator(int(inp))
     y = generator(int(inp))
-    cosine = np.dot(x,y)/(norm(x)*norm(y))
-    print(cosine)
+    cosine = permute(x)11
 
 
 if __name__ == "__main__":
