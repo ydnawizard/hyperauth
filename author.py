@@ -14,6 +14,8 @@ from operator import *
 davinci = 'davinci.txt'
 shakespeare = 'romeo.txt'
 
+#####BASIC FUNCTIONS#####
+
 #Orthogonal MAP Vector Generator
 #Takes in a desired dimensionality and returns a MAP vector
 def generator(dim):
@@ -31,36 +33,6 @@ def generator(dim):
             i+= 1
     output = np.array(vector)
     return output
-
-#Assign atomic hypervectors to each character of
-#the latin alphabet using the generator function
-alpha    = {"a": generator(10000),
-            "b": generator(10000),
-            "c": generator(10000),
-            "d": generator(10000),
-            "e": generator(10000),
-            "f": generator(10000),
-            "g": generator(10000),
-            "h": generator(10000),
-            "h": generator(10000),
-            "i": generator(10000),
-            "j": generator(10000),
-            "k": generator(10000),
-            "l": generator(10000),
-            "m": generator(10000),
-            "n": generator(10000),
-            "o": generator(10000),
-            "p": generator(10000),
-            "q": generator(10000),
-            "r": generator(10000),
-            "s": generator(10000),
-            "t": generator(10000),
-            "u": generator(10000),
-            "v": generator(10000),
-            "w": generator(10000),
-            "x": generator(10000),
-            "y": generator(10000),
-            "z": generator(10000)}
 
 #Vector Bundler
 #Takes in two vectors and performs thresholded component-wise addition
@@ -98,9 +70,6 @@ def permute_generator(n):
     np.random.shuffle(rho)
     return rho
 
-rho = permute_generator(10000)
-
-
 #Vector Permuter
 #Takes in a vector, a permutation matrix, and n, then mutiplies the vector by the permutation matrix n times
 def permute(vector, rho, n):
@@ -111,10 +80,49 @@ def permute(vector, rho, n):
         i += 1
     return vector_o
 
+#Word Slicer
+#Isolates text sequences between space chars
+
+#####ENCODING BLOCK#####
+
+#Generate a fixed permutation matrix
+rho = permute_generator(10000)
+
+#Assign atomic hypervectors to each character of
+#the latin alphabet using the generator function
+alpha    = {"a": generator(10000),
+            "b": generator(10000),
+            "c": generator(10000),
+            "d": generator(10000),
+            "e": generator(10000),
+            "f": generator(10000),
+            "g": generator(10000),
+            "h": generator(10000),
+            "h": generator(10000),
+            "i": generator(10000),
+            "j": generator(10000),
+            "k": generator(10000),
+            "l": generator(10000),
+            "m": generator(10000),
+            "n": generator(10000),
+            "o": generator(10000),
+            "p": generator(10000),
+            "q": generator(10000),
+            "r": generator(10000),
+            "s": generator(10000),
+            "t": generator(10000),
+            "u": generator(10000),
+            "v": generator(10000),
+            "w": generator(10000),
+            "x": generator(10000),
+            "y": generator(10000),
+            "z": generator(10000)}
+
+
 #Word Encoder
 #Takes in a text sequence and generates a profile vector
 def encode_word(word):
-    i=0
+    i = 0
     chars = list(word)
     vector_o = []
     while i < len(word):
@@ -127,11 +135,33 @@ def encode_word(word):
     return vector_o
 
 #Word Sequence Encoder
-#Takes in a three word sequence and generates a profile vector
+#Takes in a word vector sequence and generates a n-gram vector
+def encode_sequence(words):
+    i = 0
+    vector_o = []
+    while i < len(words):
+        if i == 0:
+            vector_o = bundle(words[0], permute(words[1], rho, 1))
+            i += 2
+        else: 
+            vector_o = bundle(vector_o, permute(words[i], rho, 1))
+            i += 1
+    return vector_o
 
 #Author Encoder
 #Takes in an array of three letter sequence profile vectors and generates
 #an author profile vector
+def encode_author(ngrams):
+    i = 0
+    vector_o = []
+    while i < len(ngrams):
+        if i == 0:
+            vector_o = bundle(ngrams[0], permute(ngrams[1], rho, 1))
+            i += 2
+        else:
+            vector_o = bundle(vector_o, permute(ngrams[i], rho, 1))
+            i += 1
+    return vector_o
 
 
 def main():
@@ -139,11 +169,17 @@ def main():
     x = generator(int(inp))
     y = generator(int(inp))
     print(x)
-    hello = encode_word("hello")
-    print(hello)
-    helloo = encode_word("asdfasd")
-    print(helloo)
-    print(np.dot(hello, helloo)/(norm(hello)*norm(helloo)))
+    a = encode_word("hello")
+    b = encode_word("asdfasd")
+    c = encode_word("lodestar")
+    abc = encode_sequence([a,b,c])
+    acb = encode_sequence([a,c,b])
+    cba = encode_sequence([c,b,a])
+    print(np.dot(abc, acb)/(norm(abc)*norm(acb)))
+    print(np.dot(abc, cba)/(norm(abc)*norm(cba)))
+    a1 = encode_author([abc, acb])
+    a2 = encode_author([abc, cba])
+    print(np.dot(a1, a2)/(norm(a1)*norm(a2)))
 
 
 
