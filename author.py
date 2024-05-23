@@ -34,7 +34,7 @@ def generator(dim):
 
 #Assign atomic hypervectors to each character of
 #the latin alphabet using the generator function
-alphabet = {"a": generator(10000),
+alpha    = {"a": generator(10000),
             "b": generator(10000),
             "c": generator(10000),
             "d": generator(10000),
@@ -76,8 +76,6 @@ def bundle(vector_a, vector_b):
             vector_o.append(vector_c[i])
             i+=1
     output = np.array(vector_o)
-    print(countOf(output, 1))
-    print(output)
     return output
 
 #Vector Binder
@@ -91,7 +89,6 @@ def bind(vector_a, vector_b):
         vector_o.append(j)
         i+=1
     output = np.array(vector_o)
-    print(output)
     return output
 
 #Permutation Matrix Declaration
@@ -99,15 +96,42 @@ def bind(vector_a, vector_b):
 def permute_generator(n):
     rho = np.eye(n)
     np.random.shuffle(rho)
-    print(rho)
     return rho
+
+rho = permute_generator(10000)
 
 
 #Vector Permuter
-#Takes in a vector and a permutation matrix, then mutiplies the vector by the permutation matrix
-def permute(vector, rho):
-    vector_p = np.matmul(vector, rho)
-    return vector_p
+#Takes in a vector, a permutation matrix, and n, then mutiplies the vector by the permutation matrix n times
+def permute(vector, rho, n):
+    i = 1
+    vector_o = vector
+    while i <= n:
+        vector_o = np.matmul(vector_o, rho)
+        i += 1
+    return vector_o
+
+#Word Encoder
+#Takes in a text sequence and generates a profile vector
+def encode_word(word):
+    i=0
+    chars = list(word)
+    vector_o = []
+    while i < len(word):
+        if i == 0:
+            vector_o = bind(alpha[chars[0]], permute(alpha[chars[1]], rho, 1))
+            i += 2
+        else:
+            vector_o = bind(vector_o, permute(alpha[chars[i]], rho, 1))
+            i += 1
+    return vector_o
+
+#Word Sequence Encoder
+#Takes in a three word sequence and generates a profile vector
+
+#Author Encoder
+#Takes in an array of three letter sequence profile vectors and generates
+#an author profile vector
 
 
 def main():
@@ -115,8 +139,12 @@ def main():
     x = generator(int(inp))
     y = generator(int(inp))
     print(x)
-    rho = permute_generator(int(inp))
-    print(permute(x, rho))
+    hello = encode_word("hello")
+    print(hello)
+    helloo = encode_word("asdfasd")
+    print(helloo)
+    print(np.dot(hello, helloo)/(norm(hello)*norm(helloo)))
+
 
 
 if __name__ == "__main__":
