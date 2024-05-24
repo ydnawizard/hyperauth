@@ -1,5 +1,5 @@
 # hyperauth
 
-MAP hypervector generation, binding, bundling, permutation are functional. 
+MAP hypervector author identification 
 
-Word encoding is functional as well
+Compares input text to encoded text for authorship
