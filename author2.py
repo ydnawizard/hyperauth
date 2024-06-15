@@ -1,7 +1,7 @@
 #Hyperdimensional Authorship Detection Program
-#Written by Ellis Weglewski
-#Identifies the Author based on 3-word sequences and first letter of line projected on to 100-dimension MAP hypervectors
-
+#Written by Ellis (Andy) Weglewski
+#Identifies the Author based on 3-word sequences and first letter 
+#of line projected on to dim-dimension BSC hypervectors
 
 #Libraries
 import random
@@ -10,68 +10,84 @@ import re
 from numpy.linalg import norm
 from operator import *
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.spatial import distance
 
 #####TEXT PRE-PROCESSING#####
-frost = open(r"forester.txt", "r", encoding="utf8")
-rob = frost.read()
-robfrost = rob.strip()
-robfrost = robfrost[:45000]
-robfrostt = robfrost[:2500]
-frost.close
+#All text files are opened for reading and then the
+#a substring of length profile_size is taken for encoding
+#the profile vector. Another substring of length
+#chunk_size is taken to call for identification.
 
-shake = open(r"shakespeare.txt", "r", encoding="utf8")
-speare = shake.read()
-shakespeare = speare.strip()
-shakespeare = shakespeare[:45000]
-shakespearee = shakespeare[:2500]
-shake.close()
+profile_size = 100000
+chunk_size = 10000
 
-mel = open(r"melville.txt", "r", encoding="utf8")
-ville = mel.read()
-melville = ville.strip()
-melville = melville[:45000]
-melvillee = melville[:2500]
-mel.close()
+#Hornblower - C.S. Forester
+forester = open(r"forester.txt", "r", encoding="utf8")
+forester = forester.read()
+forester = forester.strip()
+forester = forester[:profile_size]
+forester_chunk = forester[:chunk_size]
 
-tolk = open(r"tolkien.txt", "r", encoding="utf8")
-ien = tolk.read()
-tolkien = ien.strip()
-tolkien = tolkien[:45000]
-tolkienn = tolkien[:2500]
-tolk.close()
+#Collection of Shakespeare works
+shakespeare = open(r"shakespeare.txt", "r", encoding="utf8")
+shakespeare = shakespeare.read()
+shakespeare = shakespeare.strip()
+shakespeare = shakespeare[:profile_size]
+shakespeare_chunk = shakespeare[:chunk_size]
 
-lautr = open(r"lautreamont.txt", "r", encoding="utf8")
-eamont = lautr.read()
-lautreamont = eamont.strip()
-lautreamont = lautreamont[:45000]
-lautreamontt = lautreamont[:2500]
-lautr.close()
+#Moby Dick - Herman Melville
+melville = open(r"melville.txt", "r", encoding="utf8")
+melville = melville.read()
+melville = melville.strip()
+melville = melville[:profile_size]
+melville_chunk = melville[:chunk_size]
+
+#The Silmarillion - J.R.R Tolkien
+tolkien = open(r"tolkien.txt", "r", encoding="utf8")
+tolkien = tolkien.read()
+tolkien = tolkien.strip()
+tolkien = tolkien[:profile_size]
+tolkien_chunk = tolkien[:chunk_size]
+
+#Maldoror - Comte de Lautreamont
+lautreamont = open(r"lautreamont.txt", "r", encoding="utf8")
+lautreamont = lautreamont.read()
+lautreamont = lautreamont.strip()
+lautreamont = lautreamont[:profile_size]
+lautreamont_chunk = lautreamont[:chunk_size]
+
+#Alice in Wonderland - Lewis Caroll
+caroll = open(r"caroll.txt", "r", encoding="utf8")
+caroll = caroll.read()
+caroll = caroll.strip()
+caroll = caroll[:profile_size]
+caroll_chunk = caroll[:chunk_size]
 
 #####BASIC VECTOR FUNCTIONS#####
 
-#Orthogonal MAP Vector Generator
+#Orthogonal BSC Vector Generator
 #Takes in a desired dimensionality and returns a MAP vector
 def generator(dim):
-    vector = []
+    vector_o = []
     x = random.randint(1,2)
     i=0
-    while i < dim and len(vector) <= dim:
+    while i < dim and len(vector_o) <= dim:
         if x == 2:
-            vector.append(1)
+            vector_o.append(1)
             x = random.randint(1,2)
             i+= 1
         else:
-            vector.append(-1)
+            vector_o.append(0)
             x = random.randint(1,2)
             i+= 1
-    output = np.array(vector)
+    output = np.array(vector_o)
     return output
 
 
 #Vector Bundler
 #Takes in two vectors and performs thresholded component-wise addition
 def bundle(vector_a, vector_b):
-    vector_c = generator(100)
+    vector_c = generator(dim)
     vector_o = []
     i=0
     while i < len(vector_a) and i < len(vector_b):
@@ -91,11 +107,14 @@ def bind(vector_a, vector_b):
     i=0
     j=0
     while i < len(vector_a) and i < len(vector_b):
-        j = vector_a[i] * vector_b[i]
-        vector_o.append(j)
-        i+=1
-    output = np.array(vector_o)
-    return output
+        if vector_a[i] == vector_b[i]:
+            vector_o.append(0)
+            i+=1
+        else:
+            vector_o.append(1)
+            i+=1
+    vector_o = np.array(vector_o)
+    return vector_o
 
 #Permutation Matrix generator
 #Takes in n returns a permutation matrix of size nxn
@@ -112,129 +131,136 @@ def permute(vector, rho, n):
     while i <= n:
         vector_o = np.matmul(vector_o, rho)
         i += 1
+    vector_o = np.array(vector_o)
     return vector_o
+
+
 
 #####ENCODING BLOCK#####
 
+#Define constant for vector size
+dim = 90
+
 #Generate a fixed permutation matrix
-rho = permute_generator(100)
+rho = permute_generator(dim)
 
 #Assign atomic hypervectors to each character of
 #the latin alphabet using the generator function
-alpha    = {"a": generator(100),
-            "b": generator(100),
-            "c": generator(100),
-            "d": generator(100),
-            "e": generator(100),
-            "f": generator(100),
-            "g": generator(100),
-            "h": generator(100),
-            "i": generator(100),
-            "j": generator(100),
-            "k": generator(100),
-            "l": generator(100),
-            "m": generator(100),
-            "n": generator(100),
-            "o": generator(100),
-            "p": generator(100),
-            "q": generator(100),
-            "r": generator(100),
-            "s": generator(100),
-            "t": generator(100),
-            "u": generator(100),
-            "v": generator(100),
-            "w": generator(100),
-            "x": generator(100),
-            "y": generator(100),
-            "z": generator(100),
-            "A": generator(100),
-            "B": generator(100),
-            "C": generator(100),
-            "D": generator(100),
-            "E": generator(100),
-            "F": generator(100),
-            "G": generator(100),
-            "H": generator(100),
-            "I": generator(100),
-            "J": generator(100),
-            "K": generator(100),
-            "L": generator(100),
-            "M": generator(100),
-            "N": generator(100),
-            "O": generator(100),
-            "P": generator(100),
-            "Q": generator(100),
-            "R": generator(100),
-            "S": generator(100),
-            "T": generator(100),
-            "U": generator(100),
-            "V": generator(100),
-            "W": generator(100),
-            "X": generator(100),
-            "Y": generator(100),
-            "Z": generator(100),
-            "è": generator(100),
-            "œ": generator(100),
-            "_": generator(100),
-            "1": generator(100),
-            "2": generator(100),
-            "3": generator(100),
-            "4": generator(100),
-            "5": generator(100),
-            "6": generator(100),
-            "7": generator(100),
-            "8": generator(100),
-            "9": generator(100),
-            "0": generator(100),
-            "Ë": generator(100),
-            "ë": generator(100),
-            "é": generator(100),
-            "â": generator(100),
-            "ñ": generator(100),
-            "ô": generator(100),
-            " ": generator(100),
-            "!": generator(100),
-            '"': generator(100),
-            "#": generator(100),
-            "$": generator(100),
-            "%": generator(100),
-            "&": generator(100),
-            "'": generator(100),
-            "(": generator(100),
-            ")": generator(100),
-            "*": generator(100),
-            "+": generator(100),
-            ",": generator(100),
-            "-": generator(100),
-            ".": generator(100),
-            "/": generator(100),
-            ":": generator(100),
-            ";": generator(100),
-            "<": generator(100),
-            "=": generator(100),
-            ">": generator(100),
-            "?": generator(100),
-            "@": generator(100),
-            "[": generator(100),
-            "]": generator(100),
-            "^": generator(100),
-            "_": generator(100),
-            "`": generator(100),
-            "{": generator(100),
-            "}": generator(100),
-            "|": generator(100),
-            "~": generator(100),
-            "—": generator(100),
-            "‘": generator(100),
-            "’": generator(100),
-            "“": generator(100),
-            "”": generator(100),
-            "æ": generator(100),
-            "£": generator(100),
-            "ç": generator(100),
-            "\n": generator(100),
-            "\\": generator(100),
-            "\ufeff": generator(100)
+alpha    = {"a": generator(dim),
+            "b": generator(dim),
+            "c": generator(dim),
+            "d": generator(dim),
+            "e": generator(dim),
+            "f": generator(dim),
+            "g": generator(dim),
+            "h": generator(dim),
+            "i": generator(dim),
+            "j": generator(dim),
+            "k": generator(dim),
+            "l": generator(dim),
+            "m": generator(dim),
+            "n": generator(dim),
+            "o": generator(dim),
+            "p": generator(dim),
+            "q": generator(dim),
+            "r": generator(dim),
+            "s": generator(dim),
+            "t": generator(dim),
+            "u": generator(dim),
+            "v": generator(dim),
+            "w": generator(dim),
+            "x": generator(dim),
+            "y": generator(dim),
+            "z": generator(dim),
+            "A": generator(dim),
+            "B": generator(dim),
+            "C": generator(dim),
+            "D": generator(dim),
+            "E": generator(dim),
+            "F": generator(dim),
+            "G": generator(dim),
+            "H": generator(dim),
+            "I": generator(dim),
+            "J": generator(dim),
+            "K": generator(dim),
+            "L": generator(dim),
+            "M": generator(dim),
+            "N": generator(dim),
+            "O": generator(dim),
+            "P": generator(dim),
+            "Q": generator(dim),
+            "R": generator(dim),
+            "S": generator(dim),
+            "T": generator(dim),
+            "U": generator(dim),
+            "V": generator(dim),
+            "W": generator(dim),
+            "X": generator(dim),
+            "Y": generator(dim),
+            "Z": generator(dim),
+            "è": generator(dim),
+            "œ": generator(dim),
+            "_": generator(dim),
+            "1": generator(dim),
+            "2": generator(dim),
+            "3": generator(dim),
+            "4": generator(dim),
+            "5": generator(dim),
+            "6": generator(dim),
+            "7": generator(dim),
+            "8": generator(dim),
+            "9": generator(dim),
+            "0": generator(dim),
+            "Ë": generator(dim),
+            "ë": generator(dim),
+            "é": generator(dim),
+            "â": generator(dim),
+            "ñ": generator(dim),
+            "ô": generator(dim),
+            "ù": generator(dim),
+            " ": generator(dim),
+            "!": generator(dim),
+            '"': generator(dim),
+            "#": generator(dim),
+            "$": generator(dim),
+            "%": generator(dim),
+            "&": generator(dim),
+            "'": generator(dim),
+            "(": generator(dim),
+            ")": generator(dim),
+            "*": generator(dim),
+            "+": generator(dim),
+            ",": generator(dim),
+            "-": generator(dim),
+            ".": generator(dim),
+            "/": generator(dim),
+            ":": generator(dim),
+            ";": generator(dim),
+            "<": generator(dim),
+            "=": generator(dim),
+            ">": generator(dim),
+            "?": generator(dim),
+            "@": generator(dim),
+            "[": generator(dim),
+            "]": generator(dim),
+            "^": generator(dim),
+            "_": generator(dim),
+            "`": generator(dim),
+            "{": generator(dim),
+            "}": generator(dim),
+            "|": generator(dim),
+            "~": generator(dim),
+            "—": generator(dim),
+            "‘": generator(dim),
+            "’": generator(dim),
+            "“": generator(dim),
+            "”": generator(dim),
+            "æ": generator(dim),
+            "£": generator(dim),
+            "ç": generator(dim),
+            "\n": generator(dim),
+            "\\": generator(dim),
+            "\ufeff": generator(dim)
             }
 
 
@@ -256,10 +282,11 @@ def encode_word(word):
                 print(word)
                 i += 2
         else:
-            vector_o = bind(vector_o, permute(alpha[chars[i]], rho, 1))
+            vector_o = bind(vector_o, permute(alpha[chars[i]], rho, i))
             print(word)
             i += 1
     i = 0
+    vector_o = np.array(vector_o)
     return vector_o
 
 #Word Sequence Encoder
@@ -269,34 +296,20 @@ def encode_sequence(words):
     vector_o = []
     while i < len(words):
         if i == 0:
-            vector_o = bundle(words[0], permute(words[1], rho, 1))
+            vector_o = bind(words[0], permute(words[1], rho, 1))
             print(vector_o)
             i += 2
         else: 
-            vector_o = bundle(vector_o, permute(words[i], rho, 1))
+            vector_o = bind(vector_o, permute(words[i], rho, i))
             i += 1
     i = 0
+    vector_o = np.array(vector_o)
     return vector_o
 
 #Author Encoder
 #Takes in an array of three letter sequence profile vectors and generates
 #an author profile vector
-def encode_author1(ngrams):
-    i = 0
-    vector_o = []
-    while i < len(ngrams):
-        if i == 0:
-            vector_o = bundle(ngrams[0], permute(ngrams[1], rho, 1))
-            print(vector_o)
-            i += 2
-        else:
-            vector_o = bundle(vector_o, permute(ngrams[i], rho, 1))
-            print(i)
-            i += 1
-    i = 0
-    return vector_o
-
-def encode_author2(word_vectors):
+def encode_author(word_vectors):
     i = 0
     vector_o = []
     while i < len(word_vectors):
@@ -308,6 +321,7 @@ def encode_author2(word_vectors):
             vector_o = bundle(vector_o, word_vectors[i])
             print(vector_o)
             i += 1
+    vector_o = np.array(vector_o)
     return vector_o
 
 #Main Encoder
@@ -315,10 +329,6 @@ def encode_author2(word_vectors):
 def encode(text):
     i = 0
     prepared_text = text.split()
-    #while i < len(text)-2:
-    #    j = slice(i, i + 3)
-    #    prepared_text.append(text[j])
-    #    i += 1
     print(prepared_text)
     word_vectors = []
     ngram_vectors = []
@@ -328,87 +338,87 @@ def encode(text):
         word_vectors.append(encode_word(prepared_text[i]))
         i += 1
     i = 0
-    while i < len(word_vectors) - 2:
+    while i < len(word_vectors) - 3:
         ngram_vectors.append(encode_sequence([word_vectors[i], word_vectors[i+1], 
                                               word_vectors[i+2]]))
         i += 1
     i = 0
-    vector_o = encode_author2(ngram_vectors)
+    vector_o = encode_author(word_vectors)
+    vector_o = np.array(vector_o)
     return vector_o
 
 
-#ENCODE AUTHORS#
-a1 = encode(robfrost)
-a2 = robfrostt
-a3 = encode(shakespeare)
-a4 = encode(melville)
-a5 = melvillee
-a6 = shakespearee
-a5 = encode(tolkien)
-a8 = encode(lautreamont)
-a9 = lautreamontt
-a10 = tolkienn
+###ENCODE AUTHORS####
 
-author_vectors = [a1, a3, a4, a5, a8]
+#Run each profile_size char author var through
+#The encoding function
+a1 = encode(forester)
+a2 = encode(shakespeare)
+a3 = encode(melville)
+a4 = encode(tolkien)
+a5 = encode(lautreamont)
+a6 = encode(caroll)
 
-author_names = ["forester", "shakespeare", "melville", "tolkien", "lautreamont"]
+#Pass encoded vectors into an array
+author_vectors = [a1, a2, a3, a4, a5, a6]
+
+#Create an array of author names corresponding to their
+#Vector position in the author_vectors array
+author_names = ["forester", "shakespeare", "melville", "tolkien", "lautreamont", "caroll"]
 
 
 #Identifier
 #Takes in profile vectors and finds the closest match via cosine similarity
 def identify(text):
-    i = 1
-    j = 0
+    i = 0
+    j = 1
     input_text = encode(text)
-    while (i < len(author_vectors)) and (j < len(author_vectors)):
-        a = np.dot(input_text, author_vectors[j])/(norm(input_text)*norm(author_vectors[j])) 
-        b = np.dot(input_text, author_vectors[i])/(norm(input_text)*norm(author_vectors[i]))
-        print(a)
-        print(b)
+    while j < len(author_vectors):
+#        a = np.dot(input_text, author_vectors[i])/(norm(input_text)*norm(author_vectors[i]))
+#        b = np.dot(input_text, author_vectors[j])/(norm(input_text)*norm(author_vectors[j])
+        a = distance.hamming(input_text, author_vectors[i])
+        b = distance.hamming(input_text, author_vectors[j])
         if a < b:
-            print("hi")
-            j = i
-            i += 1
-            print(j)
+            i = j
+            j += 1
+            print(a)
+            print(b)
         else:
-            print("yo")
-            i += 1
-    print(j+1)
-    return j
+            print(j)
+            j += 1
+    identity = author_names[i]
+    print(identity)
+    return identity
 
-
-def double_identify(text):
+#Mode_Identifier
+#Takes in a profile vector, runs identify on it 10 times
+#and returns the most frequent author in the set.
+def mode_identify(text):
     i = 0
     j = []
     while i <= 10:
         j.append(identify(text))
         i += 1
     i = max(set(j), key=j.count)
-    print(author_names[i])
+    print(i)
 
 def main():
     print("Enter text to identify author: \n")
     i = 0
-    print(a1)
-    print(a8)
     while i < 1:
         inp = input()
-        if inp == "":
-            break
         if inp == "1":
-            double_identify(a2)
+            mode_identify(forester_chunk)
         if inp == "2":
-            double_identify(a6)
+            mode_identify(shakespeare_chunk)
         if inp == "3":
-            double_identify(a5)
+            mode_identify(melville_chunk)
         if inp == "4":
-            double_identify(a10)
+            mode_identify(tolkien_chunk)
         if inp == "5":
-            double_identify(a9)
-        else:
-            double_identify(inp)
-
-
+            mode_identify(lautreamont_chunk)
+        if inp == "6":
+            mode_identify(caroll_chunk)
 
 if __name__ == "__main__":
-    main() 
+    main()

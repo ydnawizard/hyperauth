@@ -1,0 +1,5 @@
+Document results (cosine sim and for diff seeds) for first iteration
+Do this again for the second iteration
+make code more concise
+push it all
+create subfolder on git for C
