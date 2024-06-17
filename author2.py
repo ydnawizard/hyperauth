@@ -18,8 +18,8 @@ from scipy.spatial import distance
 #the profile vector. Another substring of length
 #chunk_size is taken to call for identification.
 
-profile_size = 100000
-chunk_size = 10000
+profile_size = 10000
+chunk_size = 10
 
 #Hornblower - C.S. Forester
 forester = open(r"forester.txt", "r", encoding="utf8")
@@ -139,7 +139,7 @@ def permute(vector, rho, n):
 #####ENCODING BLOCK#####
 
 #Define constant for vector size
-dim = 90
+dim = 100
 
 #Generate a fixed permutation matrix
 rho = permute_generator(dim)
@@ -343,7 +343,7 @@ def encode(text):
                                               word_vectors[i+2]]))
         i += 1
     i = 0
-    vector_o = encode_author(word_vectors)
+    vector_o = encode_author(ngram_vectors)
     vector_o = np.array(vector_o)
     return vector_o
 
@@ -371,24 +371,24 @@ author_names = ["forester", "shakespeare", "melville", "tolkien", "lautreamont",
 #Takes in profile vectors and finds the closest match via cosine similarity
 def identify(text):
     i = 0
-    j = 1
+    j = 0
     input_text = encode(text)
+    hamming_distances = []
     while j < len(author_vectors):
 #        a = np.dot(input_text, author_vectors[i])/(norm(input_text)*norm(author_vectors[i]))
 #        b = np.dot(input_text, author_vectors[j])/(norm(input_text)*norm(author_vectors[j])
         a = distance.hamming(input_text, author_vectors[i])
         b = distance.hamming(input_text, author_vectors[j])
-        if a < b:
+        if a > b:
+            hamming_distances.append([a,b])
             i = j
             j += 1
-            print(a)
-            print(b)
         else:
-            print(j)
+            hamming_distances.append([a,b])
             j += 1
     identity = author_names[i]
     print(identity)
-    return identity
+    return hamming_distances
 
 #Mode_Identifier
 #Takes in a profile vector, runs identify on it 10 times
@@ -403,22 +403,24 @@ def mode_identify(text):
     print(i)
 
 def main():
+    i = 1
     print("Enter text to identify author: \n")
-    i = 0
-    while i < 1:
+    while i > 0:
         inp = input()
         if inp == "1":
-            mode_identify(forester_chunk)
+            print(identify(forester))
         if inp == "2":
-            mode_identify(shakespeare_chunk)
+            print(identify(shakespeare))
         if inp == "3":
-            mode_identify(melville_chunk)
+            print(identify(melville))
         if inp == "4":
-            mode_identify(tolkien_chunk)
+            print(identify(tolkien))
         if inp == "5":
-            mode_identify(lautreamont_chunk)
+            print(identify(lautreamont))
         if inp == "6":
-            mode_identify(caroll_chunk)
+            print(identify(caroll))
+        else:
+            print(identify(inp))
 
 if __name__ == "__main__":
     main()
