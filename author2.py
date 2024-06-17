@@ -18,7 +18,7 @@ from scipy.spatial import distance
 #the profile vector. Another substring of length
 #chunk_size is taken to call for identification.
 
-profile_size = 10000
+profile_size = 50000
 chunk_size = 10
 
 #Hornblower - C.S. Forester
@@ -139,7 +139,7 @@ def permute(vector, rho, n):
 #####ENCODING BLOCK#####
 
 #Define constant for vector size
-dim = 100
+dim = 120
 
 #Generate a fixed permutation matrix
 rho = permute_generator(dim)
@@ -419,8 +419,6 @@ def main():
             print(identify(lautreamont))
         if inp == "6":
             print(identify(caroll))
-        else:
-            print(identify(inp))
 
 if __name__ == "__main__":
     main()
