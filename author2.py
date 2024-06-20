@@ -7,6 +7,7 @@
 import random
 import numpy as np
 import re
+import string
 from numpy.linalg import norm
 from operator import *
 from sklearn.metrics.pairwise import cosine_similarity
@@ -18,8 +19,8 @@ from scipy.spatial import distance
 #the profile vector. Another substring of length
 #chunk_size is taken to call for identification.
 
-profile_size = 50000
-chunk_size = 10
+profile_size = 10000
+chunk_size = 10000
 
 #Hornblower - C.S. Forester
 forester = open(r"forester.txt", "r", encoding="utf8")
@@ -263,6 +264,9 @@ alpha    = {"a": generator(dim),
             "\ufeff": generator(dim)
             }
 
+#Initialize standard latin alphabet
+#As a string for utilities in main
+alpha_latin = list(string.ascii_lowercase)
 
 #Word Encoder
 #Takes in a text sequence and generates a profile vector
@@ -366,6 +370,7 @@ author_vectors = [a1, a2, a3, a4, a5, a6]
 #Vector position in the author_vectors array
 author_names = ["forester", "shakespeare", "melville", "tolkien", "lautreamont", "caroll"]
 
+author_chunks = [forester_chunk, shakespeare_chunk, melville_chunk, tolkien_chunk, lautreamont_chunk, caroll_chunk]
 
 #Identifier
 #Takes in profile vectors and finds the closest match via cosine similarity
@@ -380,11 +385,11 @@ def identify(text):
         a = distance.hamming(input_text, author_vectors[i])
         b = distance.hamming(input_text, author_vectors[j])
         if a > b:
-            hamming_distances.append([a,b])
+            hamming_distances.append(str(b) + ' ' + author_names[j])
             i = j
             j += 1
         else:
-            hamming_distances.append([a,b])
+            hamming_distances.append(str(b) + ' ' + author_names[j])
             j += 1
     identity = author_names[i]
     print(identity)
@@ -396,29 +401,50 @@ def identify(text):
 def mode_identify(text):
     i = 0
     j = []
+    k = 0
     while i <= 10:
         j.append(identify(text))
         i += 1
-    i = max(set(j), key=j.count)
-    print(i)
+    iden = max(set(j), key=j.count)
+    i = 0
+    while i < len(j):
+        if j[i] == iden:
+            k += 1
+        else:
+            i += 1
+    print(i/10)
 
 def main():
-    i = 1
-    print("Enter text to identify author: \n")
-    while i > 0:
-        inp = input()
-        if inp == "1":
-            print(identify(forester))
-        if inp == "2":
-            print(identify(shakespeare))
-        if inp == "3":
-            print(identify(melville))
-        if inp == "4":
-            print(identify(tolkien))
-        if inp == "5":
-            print(identify(lautreamont))
-        if inp == "6":
-            print(identify(caroll))
+    i = 0
+    j = 0
+    #Writes hamming distance between author chunk and author profile vectors to a file
+    #Called hamming.txt
+    hamming = open(r"hamming.txt", "w", encoding = "utf8")
+    for i in author_chunks:
+        to_write = identify(i)
+        hamming.write('hamming distance between ' + (author_names[j]) + ' chunk and author profile vectors: \n')
+        hamming.write('\n'.join(to_write) + '\n')
+        j += 1
+    j = 9
+    #Replaces every 10th character in a chunk with a random letter
+    #which has the effect of "diluting" the chunk
+    for i in author_chunks:
+        workable_chunk = list(i)
+        print(workable_chunk)
+        while j < chunk_size:
+            rand = random.randint(0,25)
+            workable_chunk[j] = alpha_latin[rand]
+            j += 10
+    j = 0
+    #Writes hamming distance between diluted author chunk and author profile vectors
+    #to a file called hamming_diluted.txt
+    hamming_diluted = open(r"hamming_diluted.txt", "w", encoding = "utf8")
+    for i in author_chunks:
+        to_write = identify(i)
+        hamming_diluted.write('hamming distance between diluted ' + (author_names[j]) + ' chunk and author profile vectors: \n')
+        hamming_diluted.write('\n'.join(to_write) + '\n')
+        j += 1
+
 
 if __name__ == "__main__":
     main()
