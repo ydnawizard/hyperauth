@@ -1,42 +1,42 @@
 hamming distance between punc only forester chunk and author profile vectors: 
-0.3 forester
-0.6 shakespeare
-0.5 melville
-0.7 tolkien
-0.7 lautreamont
-0.5 caroll
+0.375 forester
+0.45 shakespeare
+0.4083333333333333 melville
+0.4666666666666667 tolkien
+0.5083333333333333 lautreamont
+0.525 caroll
 hamming distance between punc only shakespeare chunk and author profile vectors: 
-0.6 forester
-0.3 shakespeare
-0.4 melville
-0.6 tolkien
-0.6 lautreamont
-0.6 caroll
+0.49166666666666664 forester
+0.36666666666666664 shakespeare
+0.475 melville
+0.4666666666666667 tolkien
+0.5416666666666666 lautreamont
+0.525 caroll
 hamming distance between punc only melville chunk and author profile vectors: 
-0.5 forester
-0.6 shakespeare
-0.3 melville
-0.9 tolkien
-0.7 lautreamont
-0.5 caroll
+0.43333333333333335 forester
+0.475 shakespeare
+0.3333333333333333 melville
+0.525 tolkien
+0.55 lautreamont
+0.4166666666666667 caroll
 hamming distance between punc only tolkien chunk and author profile vectors: 
-0.6 forester
-0.3 shakespeare
-0.6 melville
-0.0 tolkien
-0.2 lautreamont
-0.6 caroll
-hamming distance between punc only lautreamont chunk and author profile vectors: 
-0.1 forester
-0.4 shakespeare
-0.5 melville
-0.7 tolkien
-0.5 lautreamont
-0.5 caroll
-hamming distance between punc only caroll chunk and author profile vectors: 
-0.4 forester
+0.475 forester
 0.5 shakespeare
-0.8 melville
-0.2 tolkien
-0.4 lautreamont
-0.4 caroll
+0.5083333333333333 melville
+0.31666666666666665 tolkien
+0.525 lautreamont
+0.4083333333333333 caroll
+hamming distance between punc only lautreamont chunk and author profile vectors: 
+0.5083333333333333 forester
+0.45 shakespeare
+0.5416666666666666 melville
+0.45 tolkien
+0.3416666666666667 lautreamont
+0.4583333333333333 caroll
+hamming distance between punc only caroll chunk and author profile vectors: 
+0.5416666666666666 forester
+0.5166666666666667 shakespeare
+0.5416666666666666 melville
+0.4666666666666667 tolkien
+0.49166666666666664 lautreamont
+0.39166666666666666 caroll
