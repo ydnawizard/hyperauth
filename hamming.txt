@@ -1,42 +1,42 @@
 hamming distance between forester chunk and author profile vectors: 
-0.1 forester
+0.4 forester
 0.5 shakespeare
-0.5 melville
-0.4 tolkien
-0.4 lautreamont
-0.5 caroll
-hamming distance between shakespeare chunk and author profile vectors: 
-0.6 forester
-0.4 shakespeare
-0.6 melville
-0.5 tolkien
-0.5 lautreamont
-0.6 caroll
-hamming distance between melville chunk and author profile vectors: 
-0.7 forester
-0.7 shakespeare
-0.3 melville
-0.4 tolkien
-0.4 lautreamont
-0.3 caroll
-hamming distance between tolkien chunk and author profile vectors: 
-0.8 forester
-0.6 shakespeare
-0.6 melville
-0.5 tolkien
-0.5 lautreamont
-0.6 caroll
-hamming distance between lautreamont chunk and author profile vectors: 
-0.7 forester
-0.5 shakespeare
-0.7 melville
+0.4 melville
 0.6 tolkien
-0.2 lautreamont
-0.7 caroll
-hamming distance between caroll chunk and author profile vectors: 
-0.3 forester
-0.7 shakespeare
+0.6 lautreamont
+0.6 caroll
+hamming distance between shakespeare chunk and author profile vectors: 
+0.7 forester
+0.2 shakespeare
 0.3 melville
+0.5 tolkien
+0.5 lautreamont
+0.7 caroll
+hamming distance between melville chunk and author profile vectors: 
+0.5 forester
+0.6 shakespeare
+0.1 melville
+0.5 tolkien
+0.5 lautreamont
+0.7 caroll
+hamming distance between tolkien chunk and author profile vectors: 
+0.7 forester
+0.6 shakespeare
+0.5 melville
+0.3 tolkien
+0.5 lautreamont
+0.5 caroll
+hamming distance between lautreamont chunk and author profile vectors: 
+0.6 forester
+0.7 shakespeare
+0.4 melville
 0.4 tolkien
 0.4 lautreamont
-0.3 caroll
+0.6 caroll
+hamming distance between caroll chunk and author profile vectors: 
+0.8 forester
+0.5 shakespeare
+0.4 melville
+0.2 tolkien
+0.4 lautreamont
+0.6 caroll

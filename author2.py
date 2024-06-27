@@ -140,7 +140,7 @@ def permute(vector, rho, n):
 #####ENCODING BLOCK#####
 
 #Define constant for vector size
-dim = 120
+dim = 10
 
 #Generate a fixed permutation matrix
 rho = permute_generator(dim)
@@ -267,6 +267,7 @@ alpha    = {"a": generator(dim),
 #Initialize standard latin alphabet
 #As a string for utilities in main
 alpha_latin = list(string.ascii_lowercase)
+#alpha_latin = alpha_latin.extend(['1','2','3','4','5','6','7','8','9'])
 
 #Word Encoder
 #Takes in a text sequence and generates a profile vector
@@ -392,7 +393,6 @@ def identify(text):
             hamming_distances.append(str(b) + ' ' + author_names[j])
             j += 1
     identity = author_names[i]
-    print(identity)
     return hamming_distances
 
 #Mode_Identifier
@@ -428,23 +428,44 @@ def main():
     j = 9
     #Replaces every 10th character in a chunk with a random letter
     #which has the effect of "diluting" the chunk
-    for i in author_chunks:
-        workable_chunk = list(i)
-        print(workable_chunk)
-        while j < chunk_size:
-            rand = random.randint(0,25)
-            workable_chunk[j] = alpha_latin[rand]
-            j += 10
+    #for i in author_chunks:
+    #    workable_chunk = list(i)
+    #    print(workable_chunk)
+    #    while j < chunk_size:
+    #        rand = random.randint(0,25)
+    #        workable_chunk[j] = alpha_latin[rand]
+    #        j += 10
     j = 0
     #Writes hamming distance between diluted author chunk and author profile vectors
     #to a file called hamming_diluted.txt
-    hamming_diluted = open(r"hamming_diluted.txt", "w", encoding = "utf8")
+    #hamming_diluted = open(r"hamming_diluted.txt", "w", encoding = "utf8")
+    #for i in author_chunks:
+    #    to_write = identify(i)
+    #    hamming_diluted.write('hamming distance between diluted ' + (author_names[j]) + ' chunk and author profile vectors: \n')
+    #    hamming_diluted.write('\n'.join(to_write) + '\n')
+    #    j += 1
+    #j = 0
+    #Removes letters from author chunk
+    for i in author_chunks:
+        workable_chunk = list(i)
+        print(workable_chunk)
+        while j < len(workable_chunk):
+            if alpha_latin.count(workable_chunk[j]) > 0:
+                workable_chunk = workable_chunk.pop(j)
+                j += 1
+            else:
+                j += 1
+        i = workable_chunk
+    j = 0
+    #Writes hamming distance between diluted author chunk and author profile vectors
+    #to a file called hamming_diluted.txt
+    hamming_punc = open(r"hamming_punc.txt", "w", encoding = "utf8")
     for i in author_chunks:
         to_write = identify(i)
-        hamming_diluted.write('hamming distance between diluted ' + (author_names[j]) + ' chunk and author profile vectors: \n')
-        hamming_diluted.write('\n'.join(to_write) + '\n')
+        hamming_punc.write('hamming distance between punc only ' + (author_names[j]) + ' chunk and author profile vectors: \n')
+        hamming_punc.write('\n'.join(to_write) + '\n')
         j += 1
-
+    j = 0
 
 if __name__ == "__main__":
     main()
