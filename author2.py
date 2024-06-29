@@ -20,49 +20,55 @@ from scipy.spatial import distance
 #chunk_size is taken to call for identification.
 
 profile_size = 10000
-chunk_size = 10000
+#chunk_size = 10000
 
 #Hornblower - C.S. Forester
 forester = open(r"forester.txt", "r", encoding="utf8")
 forester = forester.read()
 forester = forester.strip()
 forester = forester[:profile_size]
-forester_chunk = forester[:chunk_size]
+#forester_chunk = forester[:chunk_size]
 
 #Collection of Shakespeare works
 shakespeare = open(r"shakespeare.txt", "r", encoding="utf8")
 shakespeare = shakespeare.read()
 shakespeare = shakespeare.strip()
 shakespeare = shakespeare[:profile_size]
-shakespeare_chunk = shakespeare[:chunk_size]
+#shakespeare_chunk = shakespeare[:chunk_size]
 
 #Moby Dick - Herman Melville
 melville = open(r"melville.txt", "r", encoding="utf8")
 melville = melville.read()
 melville = melville.strip()
 melville = melville[:profile_size]
-melville_chunk = melville[:chunk_size]
+#melville_chunk = melville[:chunk_size]
 
 #The Silmarillion - J.R.R Tolkien
 tolkien = open(r"tolkien.txt", "r", encoding="utf8")
 tolkien = tolkien.read()
 tolkien = tolkien.strip()
 tolkien = tolkien[:profile_size]
-tolkien_chunk = tolkien[:chunk_size]
+#tolkien_chunk = tolkien[:chunk_size]
 
 #Maldoror - Comte de Lautreamont
 lautreamont = open(r"lautreamont.txt", "r", encoding="utf8")
 lautreamont = lautreamont.read()
 lautreamont = lautreamont.strip()
 lautreamont = lautreamont[:profile_size]
-lautreamont_chunk = lautreamont[:chunk_size]
+#lautreamont_chunk = lautreamont[:chunk_size]
 
 #Alice in Wonderland - Lewis Caroll
 caroll = open(r"caroll.txt", "r", encoding="utf8")
 caroll = caroll.read()
 caroll = caroll.strip()
 caroll = caroll[:profile_size]
-caroll_chunk = caroll[:chunk_size]
+#caroll_chunk = caroll[:chunk_size]
+
+#Initialize standard latin alphabet
+#As a string for utilities in main
+alpha_latin_lower = list(string.ascii_lowercase)
+alpha_latin_upper = list(string.ascii_uppercase)
+alpha_latin = alpha_latin_upper + alpha_latin_lower
 
 #####BASIC VECTOR FUNCTIONS#####
 
@@ -140,7 +146,7 @@ def permute(vector, rho, n):
 #####ENCODING BLOCK#####
 
 #Define constant for vector size
-dim = 10
+dim = 120
 
 #Generate a fixed permutation matrix
 rho = permute_generator(dim)
@@ -264,11 +270,6 @@ alpha    = {"a": generator(dim),
             "\ufeff": generator(dim)
             }
 
-#Initialize standard latin alphabet
-#As a string for utilities in main
-alpha_latin = list(string.ascii_lowercase)
-#alpha_latin = alpha_latin.extend(['1','2','3','4','5','6','7','8','9'])
-
 #Word Encoder
 #Takes in a text sequence and generates a profile vector
 def encode_word(word):
@@ -280,15 +281,12 @@ def encode_word(word):
         if i == 0:
             if len(word) == 1:
                 vector_o = alpha[chars[0]]
-                print(word)
                 i += 1
             else:
                 vector_o = bind(alpha[chars[0]], permute(alpha[chars[1]], rho, 1))
-                print(word)
                 i += 2
         else:
             vector_o = bind(vector_o, permute(alpha[chars[i]], rho, i))
-            print(word)
             i += 1
     i = 0
     vector_o = np.array(vector_o)
@@ -302,7 +300,6 @@ def encode_sequence(words):
     while i < len(words):
         if i == 0:
             vector_o = bind(words[0], permute(words[1], rho, 1))
-            print(vector_o)
             i += 2
         else: 
             vector_o = bind(vector_o, permute(words[i], rho, i))
@@ -320,11 +317,9 @@ def encode_author(word_vectors):
     while i < len(word_vectors):
         if i == 0:
             vector_o = word_vectors[0]
-            print(vector_o)
             i += 1
         else:
             vector_o = bundle(vector_o, word_vectors[i])
-            print(vector_o)
             i += 1
     vector_o = np.array(vector_o)
     return vector_o
@@ -334,7 +329,6 @@ def encode_author(word_vectors):
 def encode(text):
     i = 0
     prepared_text = text.split()
-    print(prepared_text)
     word_vectors = []
     ngram_vectors = []
     vector_o = []
@@ -371,7 +365,7 @@ author_vectors = [a1, a2, a3, a4, a5, a6]
 #Vector position in the author_vectors array
 author_names = ["forester", "shakespeare", "melville", "tolkien", "lautreamont", "caroll"]
 
-author_chunks = [forester_chunk, shakespeare_chunk, melville_chunk, tolkien_chunk, lautreamont_chunk, caroll_chunk]
+#author_chunks = [forester_chunk, shakespeare_chunk, melville_chunk, tolkien_chunk, lautreamont_chunk, caroll_chunk]
 
 #Identifier
 #Takes in profile vectors and finds the closest match via cosine similarity
@@ -414,58 +408,100 @@ def mode_identify(text):
             i += 1
     print(i/10)
 
+
 def main():
-    i = 0
     j = 0
-    #Writes hamming distance between author chunk and author profile vectors to a file
-    #Called hamming.txt
-    hamming = open(r"hamming.txt", "w", encoding = "utf8")
-    for i in author_chunks:
-        to_write = identify(i)
-        hamming.write('hamming distance between ' + (author_names[j]) + ' chunk and author profile vectors: \n')
-        hamming.write('\n'.join(to_write) + '\n')
-        j += 1
-    j = 9
-    #Replaces every 10th character in a chunk with a random letter
-    #which has the effect of "diluting" the chunk
-    #for i in author_chunks:
-    #    workable_chunk = list(i)
-    #    print(workable_chunk)
-    #    while j < chunk_size:
-    #        rand = random.randint(0,25)
-    #        workable_chunk[j] = alpha_latin[rand]
-    #        j += 10
-    j = 0
-    #Writes hamming distance between diluted author chunk and author profile vectors
-    #to a file called hamming_diluted.txt
-    #hamming_diluted = open(r"hamming_diluted.txt", "w", encoding = "utf8")
-    #for i in author_chunks:
-    #    to_write = identify(i)
-    #    hamming_diluted.write('hamming distance between diluted ' + (author_names[j]) + ' chunk and author profile vectors: \n')
-    #    hamming_diluted.write('\n'.join(to_write) + '\n')
-    #    j += 1
-    #j = 0
-    #Removes letters from author chunk
-    for i in author_chunks:
-        workable_chunk = list(i)
-        print(workable_chunk)
-        while j < len(workable_chunk):
-            if alpha_latin.count(workable_chunk[j]) > 0:
-                workable_chunk = workable_chunk.pop(j)
-                j += 1
-            else:
-                j += 1
-        i = workable_chunk
-    j = 0
-    #Writes hamming distance between diluted author chunk and author profile vectors
-    #to a file called hamming_diluted.txt
-    hamming_punc = open(r"hamming_punc.txt", "w", encoding = "utf8")
-    for i in author_chunks:
-        to_write = identify(i)
-        hamming_punc.write('hamming distance between punc only ' + (author_names[j]) + ' chunk and author profile vectors: \n')
-        hamming_punc.write('\n'.join(to_write) + '\n')
-        j += 1
-    j = 0
+    chunk_size = 10000
+    while chunk_size > 5000:
+        forester_chunk = forester[:chunk_size]
+        shakespeare_chunk = shakespeare[:chunk_size]
+        melville_chunk = melville[:chunk_size]
+        tolkien_chunk = tolkien[:chunk_size]
+        lautreamont_chunk = lautreamont[:chunk_size]
+        caroll_chunk = caroll[:chunk_size]
+        author_chunks = [forester_chunk, shakespeare_chunk, melville_chunk, tolkien_chunk, lautreamont_chunk, caroll_chunk]
+        print('hamming_no_punct')
+        #Writes hamming distance between author chunk with no punctuation
+        #and author profile vectors to a file called hamming_no_punc.txt
+        translator = str.maketrans('','',string.punctuation)
+        no_punct_chunks = author_chunks
+        for i in no_punct_chunks:
+            i = i.translate(translator)
+            i = i.split(' ')
+            print(i)
+        #Prints
+        if chunk_size == 10000:
+            hamming = open(r"hamming_no_punct.txt", "w", encoding = "utf8")
+        else:
+            hamming = open(r"hamming_no_punct.txt", "a", encoding = "utf8")
+        for i in no_punct_chunks:
+            to_write = identify(i)
+            hamming.write('hamming distance between no punctuation ' + (author_names[j]) + ' chunk and author profile vectors at chunk size ' + str(chunk_size) + ': \n')
+            hamming.write('\n'.join(to_write) + '\n')
+            j += 1
+        j = 0
+        print('hamming')
+        #Writes hamming distance between author chunk and author profile vectors to a file
+        #Called hamming.txt
+        if chunk_size == 10000:
+            hamming = open(r"hamming.txt", "w", encoding = "utf8")
+        else:
+            hamming = open(r"hamming.txt", "a", encoding = "utf8")
+        for i in author_chunks:
+            to_write = identify(i)
+            hamming.write('hamming distance between ' + (author_names[j]) + ' chunk and author profile vectors at chunk size ' + str(chunk_size) + ': \n')
+            hamming.write('\n'.join(to_write) + '\n')
+            j += 1
+        j = 9
+        print('hamming_diluted')
+        #Replaces every 10th character in a chunk with a random letter
+        #which has the effect of "diluting" the chunk
+        diluted_chunks = author_chunks
+        for i in diluted_chunks:
+            workable_chunk = list(i)
+            while j < chunk_size:
+                rand = random.randint(0,25)
+                workable_chunk[j] = alpha_latin[rand]
+                j += 10
+        j = 0
+        #Writes hamming distance between diluted author chunk and author profile vectors
+        #to a file called hamming_diluted.txt
+        if chunk_size == 10000:
+            hamming_diluted = open(r"hamming_diluted.txt", "w", encoding = "utf8")
+        else:
+            hamming_diluted = open(r"hamming_diluted.txt", "a", encoding = "utf8")
+        for i in diluted_chunks:
+            to_write = identify(i)
+            hamming_diluted.write('hamming distance between diluted ' + (author_names[j]) + ' chunk and author profile vectors at chunk size ' + str(chunk_size) + ': \n')
+            hamming_diluted.write('\n'.join(to_write) + '\n')
+            j += 1
+        j = 0
+        print('hamming_punc')
+        #Removes letters from author chunk
+        #Making them (punc)tuation only
+        punc_chunks = author_chunks
+        for i in punc_chunks:
+            workable_chunk = list(i)
+            for j in alpha_latin:
+                while workable_chunk.count(j) > 0:
+                    workable_chunk.remove(j)
+            i = workable_chunk
+        j = 0
+        #print(author_chunks[1])
+        #Writes hamming distance between diluted author chunk and author profile vectors
+        #to a file called hamming_diluted.txt
+        if chunk_size == 10000:
+            hamming_punc = open(r"hamming_punc.txt", "w", encoding = "utf8")
+        else:
+            hamming_punc = open(r"hamming_punc.txt", "a", encoding = "utf8")
+        for i in punc_chunks:
+            to_write = identify(i)
+            hamming_punc.write('hamming distance between punc only ' + (author_names[j]) + ' chunk and author profile vectors at chunk size ' + str(chunk_size) + ': \n')
+            hamming_punc.write('\n'.join(to_write) + '\n')
+            j += 1
+            j = 0
+        chunk_size = chunk_size - 500
+        print(chunk_size)
 
 if __name__ == "__main__":
     main()
