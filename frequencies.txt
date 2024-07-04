@@ -1,0 +1,36 @@
+word length frequencies in forester['43 length 0 strings', '216 length 1 strings', '277 length 2 strings', '385 length 3 strings', '282 length 4 strings', '156 length 5 strings', '131 length 6 strings', '113 length 7 strings', '90 length 8 strings', '66 length 9 strings', '41 length 10 strings', '29 length 11 strings', '21 length 12 strings', '15 length 13 strings', '9 length 14 strings', '6 length 15 strings', '6 length 16 strings', '1 length 17 strings', '6 length 18 strings', '2 length 19 strings', '2 length 20 strings', '2 length 21 strings', '0 length 22 strings']
+word length frequencies in shakespeare['48 length 0 strings', '274 length 1 strings', '285 length 2 strings', '276 length 3 strings', '268 length 4 strings', '176 length 5 strings', '102 length 6 strings', '105 length 7 strings', '78 length 8 strings', '54 length 9 strings', '42 length 10 strings', '34 length 11 strings', '22 length 12 strings', '18 length 13 strings', '12 length 14 strings', '11 length 15 strings', '8 length 16 strings', '18 length 17 strings', '9 length 18 strings', '7 length 19 strings', '6 length 20 strings', '3 length 21 strings', '1 length 22 strings']
+word length frequencies in melville['48 length 0 strings', '254 length 1 strings', '347 length 2 strings', '330 length 3 strings', '294 length 4 strings', '168 length 5 strings', '127 length 6 strings', '117 length 7 strings', '72 length 8 strings', '55 length 9 strings', '47 length 10 strings', '24 length 11 strings', '20 length 12 strings', '22 length 13 strings', '9 length 14 strings', '11 length 15 strings', '5 length 16 strings', '6 length 17 strings', '4 length 18 strings', '1 length 19 strings', '1 length 20 strings', '1 length 21 strings', '3 length 22 strings']
+word length frequencies in tolkien['25 length 0 strings', '90 length 1 strings', '261 length 2 strings', '497 length 3 strings', '348 length 4 strings', '279 length 5 strings', '143 length 6 strings', '87 length 7 strings', '95 length 8 strings', '50 length 9 strings', '25 length 10 strings', '10 length 11 strings', '4 length 12 strings', '5 length 13 strings', '0 length 14 strings', '0 length 15 strings', '0 length 16 strings', '0 length 17 strings', '0 length 18 strings', '0 length 19 strings', '0 length 20 strings', '0 length 21 strings', '0 length 22 strings']
+word length frequencies in lautreamont['40 length 0 strings', '154 length 1 strings', '345 length 2 strings', '441 length 3 strings', '408 length 4 strings', '223 length 5 strings', '110 length 6 strings', '95 length 7 strings', '75 length 8 strings', '48 length 9 strings', '33 length 10 strings', '16 length 11 strings', '6 length 12 strings', '1 length 13 strings', '0 length 14 strings', '0 length 15 strings', '1 length 16 strings', '0 length 17 strings', '0 length 18 strings', '0 length 19 strings', '0 length 20 strings', '0 length 21 strings', '0 length 22 strings']
+word length frequencies in caroll['141 length 0 strings', '199 length 1 strings', '294 length 2 strings', '452 length 3 strings', '318 length 4 strings', '191 length 5 strings', '147 length 6 strings', '98 length 7 strings', '69 length 8 strings', '34 length 9 strings', '36 length 10 strings', '26 length 11 strings', '12 length 12 strings', '14 length 13 strings', '12 length 14 strings', '4 length 15 strings', '2 length 16 strings', '4 length 17 strings', '2 length 18 strings', '0 length 19 strings', '1 length 20 strings', '0 length 21 strings', '0 length 22 strings']
+global freq of 0 345
+global freq of 1 1187
+global freq of 2 1809
+global freq of 3 2381
+global freq of 4 1918
+global freq of 5 1193
+global freq of 6 760
+global freq of 7 615
+global freq of 8 479
+global freq of 9 307
+global freq of 10 224
+global freq of 11 139
+global freq of 12 85
+global freq of 13 75
+global freq of 14 42
+global freq of 15 32
+global freq of 16 22
+global freq of 17 29
+global freq of 18 21
+global freq of 19 10
+global freq of 20 10
+global freq of 21 6
+global freq of 22 4
+global freq of 23 5
+global freq of 24 2
+global freq of 25 1
+global freq of 26 1
+global freq of 27 0
+global freq of 28 1
+global freq of 29 1

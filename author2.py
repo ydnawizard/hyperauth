@@ -406,6 +406,63 @@ def identify(text):
 #characters. The different comparison methods are: unmodified hamming, replacing every tenth #character with a random character (diluted) hamming, removing all characters except punctuat#ion marks hamming, and removing all punctuation marks hamming.
 #############################################################################################
 def main():
+    chunk_size = 10000
+    forester_chunk = forester[:chunk_size]
+    shakespeare_chunk = shakespeare[:chunk_size]
+    melville_chunk = melville[:chunk_size]
+    tolkien_chunk = tolkien[:chunk_size]
+    lautreamont_chunk = lautreamont[:chunk_size]
+    caroll_chunk = caroll[:chunk_size]
+    author_chunks = [forester_chunk, shakespeare_chunk, melville_chunk, tolkien_chunk, lautreamont_chunk, caroll_chunk]
+    translator = str.maketrans('','',string.punctuation)
+    count_chunks = author_chunks
+    j = 0
+    for i in count_chunks:
+        i = i.translate(translator)
+        i = i.split(' ')
+        count_chunks[j] = i
+        j += 1
+    j = 0
+    l = 0
+    for i in count_chunks:
+        for k in i:
+            i[j]= len(k)
+            j += 1
+        j = 0
+        count_chunks[l] = str(i)
+        l += 1
+    l = 0
+    counted_chunk = []
+    counted_chunks = []
+    for i in count_chunks:
+        j = 0
+        while j <= 22:
+            counted_chunk.append(str(i.count(str(j))) + ' length ' + str(j) + ' strings')
+            j += 1
+        counted_chunks.append(counted_chunk)
+        counted_chunk = []
+        l += 1
+    j = 0
+    l = 0
+    counted_chunk = [0] * 30
+    for i in count_chunks:
+        while j < 30:
+            counted_chunk[j] = i.count(str(j)) + counted_chunk[j]
+            j += 1
+        j = 0
+    print(counted_chunk)
+    frequencies = open(r"frequencies.txt", "w", encoding = "utf8")
+    for i in counted_chunks:
+        frequencies.write('word length frequencies in ' + (author_names[j]) + str(counted_chunks[j]) + '\n')
+        j += 1
+    j = 0
+    frequencies = open(r"frequencies.txt", "a", encoding = "utf8")
+    for i in counted_chunk:
+        frequencies.write('global freq of ' + str(j) + ' ' + str((counted_chunk[j])) + '\n')
+        j += 1 
+
+
+"""
     #INITIALIZE# 
     chunk_size = 10000
     while chunk_size >= 8000:
@@ -508,12 +565,6 @@ def main():
             hamming.write('\n'.join(to_write) + '\n')
             j += 1
         j = 0
-        wlength_chunks = author_chunks
-        for i in wlength_chunks:
-            i = i.split(' ')
-            for j in i:
-                k = re.findall(r'\w+|[^\s\w]+', j)
-                j = str(j) + str(k)
         print('wlength_hamming')
         wlength_chunks = author_chunks
         #######################################################
@@ -551,10 +602,9 @@ def main():
             wlength_hamming.write('hamming distance between wlength ' + (author_names[j]) + ' chunk and author profile vectors at chunk size ' + str(chunk_size) + ': \n')
             wlength_hamming.write('\n'.join(to_write) + '\n')
             j += 1
-        j = 9
         chunk_size = chunk_size - 200
         print(chunk_size)
-
+"""
 
 
 if __name__ == "__main__":
