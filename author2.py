@@ -436,7 +436,7 @@ def main():
     counted_chunks = []
     for i in count_chunks:
         j = 0
-        while j <= 22:
+        while j < 30:
             counted_chunk.append(str(i.count(str(j))) + ' length ' + str(j) + ' strings')
             j += 1
         counted_chunks.append(counted_chunk)
@@ -450,11 +450,15 @@ def main():
             counted_chunk[j] = i.count(str(j)) + counted_chunk[j]
             j += 1
         j = 0
+    j = 0
     print(counted_chunk)
     frequencies = open(r"frequencies.txt", "w", encoding = "utf8")
     for i in counted_chunks:
-        frequencies.write('word length frequencies in ' + (author_names[j]) + str(counted_chunks[j]) + '\n')
-        j += 1
+        while j < 30:
+            frequencies.write((author_names[l]) + ' ' + str(i[j]) + '\n')
+            j += 1
+        j = 0
+        l += 1
     j = 0
     frequencies = open(r"frequencies.txt", "a", encoding = "utf8")
     for i in counted_chunk:
