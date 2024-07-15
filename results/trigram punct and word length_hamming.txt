@@ -1,0 +1,462 @@
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.35 forester
+0.325 shakespeare
+0.49166666666666664 melville
+0.5166666666666667 tolkien
+0.5083333333333333 lautreamont
+0.4083333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.24166666666666667 forester
+0.25 shakespeare
+0.5666666666666667 melville
+0.5416666666666666 tolkien
+0.55 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.55 forester
+0.5083333333333333 shakespeare
+0.325 melville
+0.45 tolkien
+0.325 lautreamont
+0.425 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.49166666666666664 forester
+0.48333333333333334 shakespeare
+0.5166666666666667 melville
+0.25833333333333336 tolkien
+0.48333333333333334 lautreamont
+0.5833333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.5666666666666667 forester
+0.5083333333333333 shakespeare
+0.24166666666666667 melville
+0.5 tolkien
+0.2916666666666667 lautreamont
+0.475 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 10000: 
+0.48333333333333334 forester
+0.4583333333333333 shakespeare
+0.4083333333333333 melville
+0.48333333333333334 tolkien
+0.375 lautreamont
+0.24166666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.425 forester
+0.43333333333333335 shakespeare
+0.4666666666666667 melville
+0.45 tolkien
+0.38333333333333336 lautreamont
+0.4583333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.525 forester
+0.5333333333333333 shakespeare
+0.4 melville
+0.43333333333333335 tolkien
+0.4666666666666667 lautreamont
+0.425 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.39166666666666666 forester
+0.5166666666666667 shakespeare
+0.48333333333333334 melville
+0.48333333333333334 tolkien
+0.45 lautreamont
+0.49166666666666664 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.4666666666666667 forester
+0.5416666666666666 shakespeare
+0.2916666666666667 melville
+0.475 tolkien
+0.3416666666666667 lautreamont
+0.4166666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.43333333333333335 forester
+0.49166666666666664 shakespeare
+0.5083333333333333 melville
+0.525 tolkien
+0.44166666666666665 lautreamont
+0.48333333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9800: 
+0.4 forester
+0.44166666666666665 shakespeare
+0.39166666666666666 melville
+0.5083333333333333 tolkien
+0.30833333333333335 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.5 forester
+0.475 shakespeare
+0.5333333333333333 melville
+0.43333333333333335 tolkien
+0.49166666666666664 lautreamont
+0.48333333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.45 forester
+0.39166666666666666 shakespeare
+0.4166666666666667 melville
+0.48333333333333334 tolkien
+0.475 lautreamont
+0.4 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.44166666666666665 forester
+0.4166666666666667 shakespeare
+0.475 melville
+0.49166666666666664 tolkien
+0.43333333333333335 lautreamont
+0.44166666666666665 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.5333333333333333 forester
+0.5583333333333333 shakespeare
+0.35 melville
+0.45 tolkien
+0.325 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.4666666666666667 forester
+0.475 shakespeare
+0.48333333333333334 melville
+0.48333333333333334 tolkien
+0.49166666666666664 lautreamont
+0.2833333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9600: 
+0.4583333333333333 forester
+0.55 shakespeare
+0.3416666666666667 melville
+0.5083333333333333 tolkien
+0.31666666666666665 lautreamont
+0.525 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.5166666666666667 forester
+0.5083333333333333 shakespeare
+0.4583333333333333 melville
+0.49166666666666664 tolkien
+0.45 lautreamont
+0.25 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.5083333333333333 forester
+0.4666666666666667 shakespeare
+0.48333333333333334 melville
+0.4666666666666667 tolkien
+0.5416666666666666 lautreamont
+0.4083333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.49166666666666664 forester
+0.5833333333333334 shakespeare
+0.4166666666666667 melville
+0.48333333333333334 tolkien
+0.425 lautreamont
+0.35833333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.475 forester
+0.5166666666666667 shakespeare
+0.2833333333333333 melville
+0.45 tolkien
+0.30833333333333335 lautreamont
+0.5083333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.5333333333333333 forester
+0.575 shakespeare
+0.35833333333333334 melville
+0.5583333333333333 tolkien
+0.3 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9400: 
+0.48333333333333334 forester
+0.5083333333333333 shakespeare
+0.39166666666666666 melville
+0.525 tolkien
+0.4 lautreamont
+0.48333333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.5 forester
+0.5 shakespeare
+0.475 melville
+0.31666666666666665 tolkien
+0.43333333333333335 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.48333333333333334 forester
+0.45 shakespeare
+0.39166666666666666 melville
+0.48333333333333334 tolkien
+0.45 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.5333333333333333 forester
+0.6333333333333333 shakespeare
+0.425 melville
+0.5833333333333334 tolkien
+0.45 lautreamont
+0.3333333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.55 forester
+0.55 shakespeare
+0.525 melville
+0.45 tolkien
+0.45 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.5666666666666667 forester
+0.5833333333333334 shakespeare
+0.4583333333333333 melville
+0.31666666666666665 tolkien
+0.48333333333333334 lautreamont
+0.55 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9200: 
+0.4666666666666667 forester
+0.38333333333333336 shakespeare
+0.425 melville
+0.5 tolkien
+0.45 lautreamont
+0.4666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.575 forester
+0.55 shakespeare
+0.5 melville
+0.48333333333333334 tolkien
+0.48333333333333334 lautreamont
+0.4666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.55 forester
+0.49166666666666664 shakespeare
+0.4583333333333333 melville
+0.5083333333333333 tolkien
+0.475 lautreamont
+0.475 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.5 forester
+0.475 shakespeare
+0.4583333333333333 melville
+0.4583333333333333 tolkien
+0.44166666666666665 lautreamont
+0.30833333333333335 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.5 forester
+0.5083333333333333 shakespeare
+0.425 melville
+0.4583333333333333 tolkien
+0.475 lautreamont
+0.425 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.4166666666666667 forester
+0.525 shakespeare
+0.49166666666666664 melville
+0.5916666666666667 tolkien
+0.4583333333333333 lautreamont
+0.49166666666666664 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 9000: 
+0.5083333333333333 forester
+0.5333333333333333 shakespeare
+0.4666666666666667 melville
+0.48333333333333334 tolkien
+0.45 lautreamont
+0.3333333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.48333333333333334 forester
+0.5666666666666667 shakespeare
+0.35833333333333334 melville
+0.4166666666666667 tolkien
+0.35 lautreamont
+0.4583333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.4083333333333333 forester
+0.425 shakespeare
+0.5 melville
+0.475 tolkien
+0.375 lautreamont
+0.4666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.3 forester
+0.2833333333333333 shakespeare
+0.5583333333333333 melville
+0.4666666666666667 tolkien
+0.5 lautreamont
+0.5416666666666666 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.43333333333333335 forester
+0.4666666666666667 shakespeare
+0.5416666666666666 melville
+0.55 tolkien
+0.4666666666666667 lautreamont
+0.525 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.4583333333333333 forester
+0.475 shakespeare
+0.5333333333333333 melville
+0.425 tolkien
+0.5083333333333333 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8800: 
+0.475 forester
+0.5083333333333333 shakespeare
+0.5 melville
+0.44166666666666665 tolkien
+0.4583333333333333 lautreamont
+0.4 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.43333333333333335 forester
+0.44166666666666665 shakespeare
+0.43333333333333335 melville
+0.49166666666666664 tolkien
+0.43333333333333335 lautreamont
+0.5666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.4166666666666667 forester
+0.425 shakespeare
+0.55 melville
+0.44166666666666665 tolkien
+0.5333333333333333 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.475 forester
+0.4666666666666667 shakespeare
+0.525 melville
+0.5666666666666667 tolkien
+0.525 lautreamont
+0.525 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.475 forester
+0.48333333333333334 shakespeare
+0.44166666666666665 melville
+0.45 tolkien
+0.39166666666666666 lautreamont
+0.35833333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.5333333333333333 forester
+0.575 shakespeare
+0.5166666666666667 melville
+0.35833333333333334 tolkien
+0.4666666666666667 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8600: 
+0.45 forester
+0.5583333333333333 shakespeare
+0.43333333333333335 melville
+0.525 tolkien
+0.5 lautreamont
+0.5666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.475 forester
+0.5083333333333333 shakespeare
+0.48333333333333334 melville
+0.4666666666666667 tolkien
+0.48333333333333334 lautreamont
+0.475 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.55 forester
+0.5333333333333333 shakespeare
+0.39166666666666666 melville
+0.5083333333333333 tolkien
+0.35833333333333334 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.36666666666666664 forester
+0.36666666666666664 shakespeare
+0.525 melville
+0.425 tolkien
+0.5083333333333333 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.5666666666666667 forester
+0.5166666666666667 shakespeare
+0.4583333333333333 melville
+0.575 tolkien
+0.49166666666666664 lautreamont
+0.3 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.48333333333333334 forester
+0.48333333333333334 shakespeare
+0.3416666666666667 melville
+0.44166666666666665 tolkien
+0.25833333333333336 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8400: 
+0.4083333333333333 forester
+0.44166666666666665 shakespeare
+0.5 melville
+0.5 tolkien
+0.4666666666666667 lautreamont
+0.4583333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.425 forester
+0.39166666666666666 shakespeare
+0.6 melville
+0.5416666666666666 tolkien
+0.6166666666666667 lautreamont
+0.4583333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.48333333333333334 forester
+0.4666666666666667 shakespeare
+0.5083333333333333 melville
+0.45 tolkien
+0.44166666666666665 lautreamont
+0.4166666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.6583333333333333 forester
+0.5583333333333333 shakespeare
+0.5 melville
+0.4083333333333333 tolkien
+0.38333333333333336 lautreamont
+0.44166666666666665 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.5833333333333334 forester
+0.5 shakespeare
+0.475 melville
+0.48333333333333334 tolkien
+0.425 lautreamont
+0.3333333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.5166666666666667 forester
+0.5166666666666667 shakespeare
+0.24166666666666667 melville
+0.4166666666666667 tolkien
+0.275 lautreamont
+0.5333333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8200: 
+0.5416666666666666 forester
+0.525 shakespeare
+0.4666666666666667 melville
+0.425 tolkien
+0.43333333333333335 lautreamont
+0.2916666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.475 forester
+0.5333333333333333 shakespeare
+0.39166666666666666 melville
+0.425 tolkien
+0.325 lautreamont
+0.5333333333333333 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.425 forester
+0.48333333333333334 shakespeare
+0.49166666666666664 melville
+0.475 tolkien
+0.5083333333333333 lautreamont
+0.45 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.525 forester
+0.45 shakespeare
+0.5083333333333333 melville
+0.275 tolkien
+0.525 lautreamont
+0.4666666666666667 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.4583333333333333 forester
+0.5333333333333333 shakespeare
+0.3416666666666667 melville
+0.49166666666666664 tolkien
+0.35833333333333334 lautreamont
+0.48333333333333334 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.4583333333333333 forester
+0.48333333333333334 shakespeare
+0.4083333333333333 melville
+0.49166666666666664 tolkien
+0.4083333333333333 lautreamont
+0.5 caroll
+hamming distance between punct and word length forester chunk and author profile vectors at chunk size 8000: 
+0.39166666666666666 forester
+0.4666666666666667 shakespeare
+0.44166666666666665 melville
+0.475 tolkien
+0.49166666666666664 lautreamont
+0.5 caroll
