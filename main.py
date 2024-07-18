@@ -17,7 +17,6 @@ author_names = ["forester","shakespeare","melville","tolkien","lautreamont","car
 chunk_size = 10000
 
 def main():
-    j = 0
     chunk_size = 10000
     from identify import identify
     pl_authors = authors
@@ -25,6 +24,7 @@ def main():
     #punct_and_length_profiles = encode_punct_and_length(pl_authors)
     pos_profiles = encode_pos(pos_authors)
     while chunk_size >= 8000:
+        j = 0
         forester_chunk = forester[:chunk_size]
         shakespeare_chunk = shakespeare[:chunk_size]
         melville_chunk = melville[:chunk_size]
@@ -41,7 +41,7 @@ def main():
         for i in pos_chunks:
             to_write = identify(i, pos_profile_vectors)
             print(to_write)
-            writer(to_write, 'part of speech tagged', j, chunk_size)
+            writer(to_write, 'part of speech tagged no perm ', j, chunk_size)
             j += 1
             """
         j -= len(authors)
